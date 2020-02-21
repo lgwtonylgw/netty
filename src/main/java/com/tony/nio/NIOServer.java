@@ -56,6 +56,7 @@ public class NIOServer {
                     // 获得SocketChannel，此处的accept不会阻塞
                     SocketChannel socketChannel = serverSocketChannel.accept();
                     // 此处socketChannel也要设置为非阻塞模式
+                    System.out.println("客户端连接成功，生成一个socketchannel: "+socketChannel.hashCode());
                     socketChannel.configureBlocking(false);
                     // 注册Selector。第三个参数是连接的对象，通过SelectionKey可以连接到这个对象
                     socketChannel.register(selector, SelectionKey.OP_READ, ByteBuffer.allocate(1024));
