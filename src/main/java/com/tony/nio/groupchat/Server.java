@@ -1,9 +1,6 @@
 package com.tony.nio.groupchat;
 
 
-
-import sun.applet.resources.MsgAppletViewer;
-
 import java.io.IOException;
 import java.net.InetSocketAddress;
 import java.nio.ByteBuffer;
