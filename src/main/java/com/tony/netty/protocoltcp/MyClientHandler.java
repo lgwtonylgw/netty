@@ -28,7 +28,11 @@ public class MyClientHandler extends SimpleChannelInboundHandler<MessageProtocol
 
     @Override
     protected void channelRead0(ChannelHandlerContext channelHandlerContext, MessageProtocol messageProtocol) throws Exception {
-
+        int len=messageProtocol.getLen();
+        byte[] content = messageProtocol.getContent();
+        System.out.println("接收到长度="+len);
+        System.out.println("接收到内容："+new String(content,Charset.forName("utf-8")));
+        System.out.println("接收到的次数："+(++this.count));
     }
 
     @Override

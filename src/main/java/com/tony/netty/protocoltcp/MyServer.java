@@ -24,7 +24,7 @@ public class MyServer {
                     .childHandler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            socketChannel.pipeline().addLast(new MyByteToLonghandler())
+                            socketChannel.pipeline().addLast(new MyMessageDecoderhandler())
                                     .addLast(new MyMessageEncoderHandler())
                                     .addLast(new MyServerHandler());
                         }

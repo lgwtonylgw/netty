@@ -16,6 +16,5 @@ public class MyLongToByteEncoderHandler extends MessageToByteEncoder<Long> {
         System.out.println("MyLongToBytehandler被调用");
         System.out.println("msg="+ aLong);
         byteBuf.writeLong(aLong);
-
     }
 }

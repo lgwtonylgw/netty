@@ -29,7 +29,7 @@ public class NettyServerHandler extends ChannelInboundHandlerAdapter {
         ByteBuf buf=(ByteBuf)msg;
         System.out.println("客户端发的送的消息是："+buf.toString(CharsetUtil.UTF_8));
         //用户自定义的普通任务   放到tashQueue
-        ctx.channel().eventLoop().execute(new Runnable() {
+        ctx.channel().eventLoop().execute(new Runnable() {   //这个线程和handler这个线程是一个线程
             @Override
             public void run() {
                 try {

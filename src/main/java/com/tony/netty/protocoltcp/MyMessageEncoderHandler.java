@@ -18,5 +18,6 @@ public class MyMessageEncoderHandler extends MessageToByteEncoder<MessageProtoco
     protected void encode(ChannelHandlerContext channelHandlerContext, MessageProtocol messageProtocol, ByteBuf byteBuf) throws Exception {
         System.out.println("MyMessageEncoderHandler被调用");
         byteBuf.writeInt(messageProtocol.getLen());
+        byteBuf.writeBytes(messageProtocol.getContent());
     }
 }

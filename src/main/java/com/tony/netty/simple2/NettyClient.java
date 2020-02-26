@@ -1,4 +1,4 @@
-package com.tony.netty.protocoltcp;
+package com.tony.netty.simple2;
 
 import io.netty.bootstrap.Bootstrap;
 import io.netty.channel.ChannelFuture;
@@ -8,12 +8,13 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 
 /**
- * Created on 2020/2/23 20:41.
+ * Created on 2020/2/21 21:38.
  *
  * @author Tony
  * @description:
  */
-public class MyClient {
+public class NettyClient {
+    //客户端需要一个事件循环组
     public static void main(String[] args) throws InterruptedException {
 
         NioEventLoopGroup eventExecutors = new NioEventLoopGroup();
@@ -24,17 +25,14 @@ public class MyClient {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
-                            socketChannel.pipeline()
-                                    .addLast(new MyMessageEncoderHandler())
-                                    .addLast(new MyMessageDecoderhandler())
-                                    .addLast(new MyClientHandler());
+                            socketChannel.pipeline().addLast(new NettyClientHandler());
                         }
                     });
             System.out.println("客户端准备好了");
             //ChannelFuture涉及到netty的异步模型
-            ChannelFuture future = bootstrap.connect("127.0.0.1", 8888).sync();
-            future.channel().closeFuture().sync();
+            ChannelFuture future = bootstrap.connect("127.0.0.1", 6668).sync();
             //给关闭通道进行监听
+            future.channel().closeFuture().sync();
         }finally {
             eventExecutors.shutdownGracefully();
         }
